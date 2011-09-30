@@ -11,4 +11,20 @@ $(function () {
   $(windows.applicationCache.bind('error', function () {
     alert('There was an error when loading the cache manifest.');
   }))
-})
+
+  $(window.applicationCache).bind('error', function () {
+    alert('There was an error when loading the cache manifest.');
+  });
+
+  $.getJSON("/items.json", function(data) {
+    $("#items").html($("#item_template").tmpl(data));
+  });
+
+  $(window.applicationCache).bind('error', function () {
+    alert('There was an error when loading the cache manifest.');
+  });
+
+  $.retrieveJSON("/items.json", function(data) {
+    $("#items").html($("#item_template").tmpl(data));
+  });
+});

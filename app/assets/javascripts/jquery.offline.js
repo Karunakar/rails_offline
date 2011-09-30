@@ -1,0 +1,1 @@
+<html><body>You are being <a href="https://raw.github.com/wycats/jquery-offline/master/lib/jquery.offline.js">redirected</a>.</body></html>
