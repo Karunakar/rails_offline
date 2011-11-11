@@ -1,10 +1,13 @@
 class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
-  respond_to :json
+  #respond_to :json
   def index
     @items = Item.all
-    respond_with(@items)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json
+    end
   end
 
   # GET /items/1
