@@ -1,24 +1,14 @@
-<h1>Listing items</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @items.each do |item| %>
-  <tr>
-    <td><%= item.title %></td>
-    <td><%= link_to 'Show', item %></td>
-    <td><%= link_to 'Edit', edit_item_path(item) %></td>
-    <td><%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<%= form_for(Item.new) do |f| %>
+  <p>
+    <%= f.text_field :title %>
+    <%= f.submit "Add" %>
+  </p>
 <% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Item', new_item_path %>
-
+<script type="text/html" id="item_template">
+  <li>${item.title}</li>
+</script>
+<ol id="items">
+  <li><em>Loading items...</em></li>
+</ol>

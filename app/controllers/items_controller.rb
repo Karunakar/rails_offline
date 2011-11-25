@@ -2,12 +2,10 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   #respond_to :json
+ respond_to  :json
   def index
     @items = Item.all
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json
-    end
+    respond_with(@items)
   end
 
   # GET /items/1
@@ -39,18 +37,9 @@ class ItemsController < ApplicationController
 
   # POST /items
   # POST /items.json
-  def create
-    @item = Item.new(params[:item])
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, :notice => 'Item was successfully created.' }
-        format.json { render :json => @item, :status => :created, :location => @item }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @item.errors, :status => :unprocessable_entity }
-      end
-    end
+   def create
+    Item.create!(params[:item])
+    redirect_to items_url
   end
 
   # PUT /items/1
