@@ -8,7 +8,31 @@
 //= require jquery_ujs
 //= require_tree .
 $(function () {
-  $(windows.applicationCache.bind('error', function () {
-    alert('There was an error when loading the cache manifest.');
-  }))
+    if ($.support.localStorage) {
+    $(window.applicationCache).bind("error", function() {
+      console.log("There was an error when loading the cache manifest.");
+    });
+
+
+
+
+    $.retrieveJSON("/items.json", function(data) {
+        //alert(data);
+        $("#items").html($("#item_template").tmpl([{"item":{"created_at":"2011-12-09T10:24:01Z","id":1,"title":"wer","updated_at":"2011-12-09T10:24:01Z"}},{"item":{"created_at":"2011-12-09T10:24:03Z","id":2,"title":"werr","updated_at":"2011-12-09T10:24:03Z"}},{"item":{"created_at":"2011-12-09T10:24:05Z","id":3,"title":"rwer","updated_at":"2011-12-09T10:24:05Z"}},{"item":{"created_at":"2011-12-09T10:24:07Z","id":4,"title":"rewwww","updated_at":"2011-12-09T10:24:07Z"}}]));
+      //var pendingItems = $.parseJSON(localStorage["pendingItems"]);
+      //$("#items").html($("#item_template").tmpl(data.concat(pendingItems)));
+        //$("#items").html($("#item_template").tmpl([{"item":{"created_at":"2011-12-09T10:24:01Z","id":1,"name":"wer","updated_at":"2011-12-09T10:24:01Z"}},{"item":{"created_at":"2011-12-09T10:24:03Z","id":2,"name":"werr","updated_at":"2011-12-09T10:24:03Z"}},{"item":{"created_at":"2011-12-09T10:24:05Z","id":3,"name":"rwer","updated_at":"2011-12-09T10:24:05Z"}},{"item":{"created_at":"2011-12-09T10:24:07Z","id":4,"name":"rewwww","updated_at":"2011-12-09T10:24:07Z"}}]));
+
+    });
+
+
+    //$("#items").html($("#item_template").tmpl({"item":{"title":"milk"}}));
+        //$("#items").html($("#item_template").tmpl({"item":[{"title":"milk" },{"title":"curd"}]));
+//        alert("it supports");
+         }
+    else
+        {
+         alert("it wont supports");
+        }
+
 })

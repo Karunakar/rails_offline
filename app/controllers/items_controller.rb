@@ -1,13 +1,10 @@
 class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
+  respond_to :html, :json
   def index
-    @items = Item.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @items }
-    end
+    @items = Item.all(:select => "title")
+    respond_with(@items)
   end
 
   # GET /items/1
